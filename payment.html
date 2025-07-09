@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <title>Select Payment Method</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
     form {
       background-color: white;
       padding: 20px;
@@ -13,9 +17,17 @@
       margin: auto;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    h2 { text-align: center; }
-    label { display: block; margin: 12px 0 6px; font-weight: bold; }
-    input[type="radio"] { margin-right: 10px; }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
     button {
       background-color: #007BFF;
       color: white;
@@ -26,7 +38,9 @@
       margin-top: 20px;
       cursor: pointer;
     }
-    button:hover { background-color: #0056b3; }
+    button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -37,4 +51,30 @@
     <label><input type="radio" name="payment" value="PayPal"> PayPal</label>
     <label><input type="radio" name="payment" value="Venmo"> Venmo</label>
     <label><input type="radio" name="payment" value="Zelle"> Zelle</label>
-    <
+    <label><input type="radio" name="payment" value="Credit Card"> Credit Card</label>
+    <label><input type="radio" name="payment" value="Debit Card"> Debit Card</label>
+
+    <button type="submit">Continue</button>
+  </form>
+
+  <script>
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const selected = document.querySelector('input[name="payment"]:checked');
+      if (!selected) {
+        alert('Please select a payment method.');
+        return;
+      }
+
+      const value = selected.value.toLowerCase();
+      if (value === 'credit card' || value === 'debit card') {
+        window.location.href = 'card-details.html';
+      } else {
+        alert(`You selected ${selected.value}.`);
+        // You can redirect to a confirmation page or simply close the tab
+      }
+    });
+  </script>
+
+</body>
+</html>
